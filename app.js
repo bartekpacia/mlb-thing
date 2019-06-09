@@ -11,7 +11,6 @@ async function getHtml() {
   const page = await browser.newPage();
   await page.goto(url);
   const content = await page.content();
-  // console.log(content);
 
   const names = [];
   const length = $("span.name > a", content).length;
@@ -19,7 +18,7 @@ async function getHtml() {
 
   for (let i = 0; i < length; i++) {
     // names.push($("span.name > a", content)[i].attribs.href);
-    const cheerio = await $("span.name > a", content)[i];
+    const cheerio = $("span.name > a", content)[i];
     const name = cheerio.attribs["aria-label"];
     names.push(name);
   }

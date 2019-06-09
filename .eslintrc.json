@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    // Required for certain syntax usages
+    "ecmaVersion": 2017
+  },
+  "plugins": ["prettier", "promise"],
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "prettier/prettier": ["warn"],
+    "no-undef": "error",
+    "import/newline-after-import": "off",
+    "no-use-before-define": ["error", { "functions": false }],
+    "no-unused-vars": "warn",
+    "no-plusplus": "off",
+    "prefer-destructuring": "off",
+    "no-console": "off"
+  }
+}
