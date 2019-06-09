@@ -1,0 +1,19 @@
+{
+  "name": "mlb-thing",
+  "version": "1.0.0",
+  "description": "To make Bartek Tramś happy again.",
+  "main": "app.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "eslint": "^5.16.0",
+    "puppeteer": "^1.17.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
