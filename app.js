@@ -1,17 +1,25 @@
 const puppeteer = require("puppeteer");
+const readline = require("readline");
 const $ = require("cheerio");
 
-const url =
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const matchUrl =
   "https://www.mlb.com/gameday/d-backs-vs-dodgers/2019/03/29/565800#game_state=final,lock_state=final,game_tab=box,game=565800";
 
-getHtml();
+rl.question("Siema Bartek, podaj url meczu: ", answer => {
+  getHtml(answer);
+});
 
-async function getHtml() {
+async function getHtml(url) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
   const content = await page.content();
-  console.log(content);
+  // console.log(content);
 
   const players = [];
   const length = $("span.name > a", content).length;
