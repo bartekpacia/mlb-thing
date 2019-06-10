@@ -11,8 +11,9 @@ async function getHtml() {
   const page = await browser.newPage();
   await page.goto(url);
   const content = await page.content();
+  console.log(content);
 
-  const names = [];
+  const players = [];
   const length = $("span.name > a", content).length;
   console.log($("span.name > a", content).length);
 
@@ -20,8 +21,14 @@ async function getHtml() {
     // names.push($("span.name > a", content)[i].attribs.href);
     const cheerio = $("span.name > a", content)[i];
     const name = cheerio.attribs["aria-label"];
-    names.push(name);
+    const href = cheerio.attribs.href;
+    players.push({
+      name,
+      href
+    });
   }
 
-  console.log(names);
+  players.forEach(player => {
+    console.log(`${player.name} ${player.href}`);
+  });
 }
