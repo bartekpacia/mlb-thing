@@ -1,11 +1,15 @@
 const puppeteer = require("puppeteer");
 const readline = require("readline-sync");
 const figlet = require("figlet");
+const chalk = require("chalk");
 const $ = require("cheerio");
 
-console.log(figlet.textSync("MLB Thing\n"));
+console.log(chalk.blue(figlet.textSync("MLB Thing\n")));
 
-const url = readline.question("Enter URL of the match: ");
+let url = readline.question("Enter URL of the match: ");
+if (url.length === 0)
+  url =
+    "https://www.mlb.com/gameday/d-backs-vs-dodgers/2019/03/29/565800#game_state=final,lock_state=final,game_tab=box,game=565800";
 getHtml(url).then(html => {
   process(html);
 });
