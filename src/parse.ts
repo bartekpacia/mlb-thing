@@ -1,13 +1,12 @@
-const $ = require("cheerio");
-const figlet = require("figlet");
-const chalk = require("chalk");
+import * as $ from "cheerio";
+import { Player, Team } from "./types";
 
 /**
  *
  * @param {} html HTML code of the website (whole)
  * @param {} position Left (0) or right (1)
  */
-function getTeamData(html, position) {
+function getTeam(html: string, position: number): Team {
   let teamTable;
   let teamTableBench;
   if (position === 0) {
@@ -23,37 +22,30 @@ function getTeamData(html, position) {
   const spans = $("span.name > a", teamTable);
   const spansBench = $("td > a", teamTableBench);
 
-  const playersActive = parseNames(spans);
+  const playersActive = parseNames(spans, false);
   const playersBench = parseNames(spansBench, true);
 
-  const teamData = {
-    position,
-    teamName,
-    players: playersActive.concat(playersBench)
-  };
+  const team = new Team(teamName, playersActive.concat(playersBench), position);
 
-  return teamData;
+  return team;
 }
 
-function parseNames(spans, isBench) {
+function parseNames(spans: Cheerio, isBench: boolean): Player[] {
   const players = [];
   for (let i = 0; i < spans.length; i++) {
     const cheerio = spans[i];
     const name = cheerio.attribs["aria-label"];
     const href = cheerio.attribs.href;
 
-    players.push({
-      name,
-      href,
-      isBench
-    });
+    const player = new Player(name, href, isBench);
+    players.push(player);
   }
 
   players.sort(compareNames);
   return players;
 }
 
-function compareNames(a, b) {
+function compareNames(a: Player, b: Player) {
   const nameA = a.name;
   const nameB = b.name;
 
@@ -64,4 +56,4 @@ function compareNames(a, b) {
   return comparison;
 }
 
-module.exports.getTeamData = getTeamData;
+export { getTeam };
