@@ -8,5 +8,5 @@ Just a web scraper for https://www.mlb.com/ I've made for my friend to make his 
 - Download the project
 - Open command line in the project folder (folder you downloaded)
 - Run `npm install`
-- Run `node lib/app`
+- Run `npm run start`
 - Follow the instructions
