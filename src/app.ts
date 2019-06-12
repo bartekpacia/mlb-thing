@@ -43,8 +43,8 @@ download.getHtml(url).then(html => {
 
 function logPlayer(player: Player, index: number) {
   if (player.isBench) {
-    console.log(chalk.yellow(`${index}: ${player.name}   ${player.href}`));
+    console.log(chalk.yellow(`${player.name}   ${player.href}`));
   } else {
-    console.log(`${index}: ${player.name}   ${player.href}`);
+    console.log(`${player.name}   ${player.href}`);
   }
 }

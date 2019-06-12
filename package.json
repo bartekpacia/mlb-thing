@@ -29,6 +29,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node build/app.js"
   },
-  "author": "",
+  "author": "bartekpacia",
   "license": "ISC"
 }

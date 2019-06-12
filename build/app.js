@@ -33,9 +33,9 @@ download.getHtml(url).then(function (html) {
 });
 function logPlayer(player, index) {
     if (player.isBench) {
-        console.log(chalk_1.default.yellow(index + ": " + player.name + "   " + player.href));
+        console.log(chalk_1.default.yellow(player.name + "   " + player.href));
     }
     else {
-        console.log(index + ": " + player.name + "   " + player.href);
+        console.log(player.name + "   " + player.href);
     }
 }
