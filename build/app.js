@@ -6,7 +6,7 @@ var chalk_1 = require("chalk");
 var download = require("./download");
 var parse = require("./parse");
 console.log(chalk_1.default.green("MLB Thing") + " by Bartek Pacia | Command-line baseball data scraper");
-console.log("Player names colored on " + chalk_1.default.yellow("yellow") + " were bullup/bench");
+console.log("Player names colored on " + chalk_1.default.yellow("yellow") + " were only on bench");
 var url = readline.question("Enter URL of the match: ");
 if (url.length === 0)
     url =

@@ -28,9 +28,21 @@ function getTeam(html: string, position: number): Team {
 
   const playersActive = parseNames(spans, false);
   const playersBench = parseNames(spansBench, true);
-  const playersPitch = parseNames(spansPitch, true);
+  const playersPitch = parseNames(spansPitch, false);
 
-  const team = new Team(teamName, playersActive.concat(playersBench, playersPitch), position);
+  let playersAll = playersActive.concat(playersBench, playersPitch);
+
+  // Remove players who played *and* sat on bench
+  playersAll = playersAll.filter((player, index) => {
+    return (
+      index ===
+      playersAll.findIndex(p => {
+        return p.name === player.name;
+      })
+    );
+  });
+
+  const team = new Team(teamName, playersAll, position);
 
   return team;
 }
