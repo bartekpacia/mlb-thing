@@ -9,23 +9,28 @@ import { Player, Team } from "./types";
 function getTeam(html: string, position: number): Team {
   let teamTable;
   let teamTableBench;
+  let teamTablePitch;
   if (position === 0) {
     teamTable = $('section.box.away[data-view="0"]', html);
     teamTableBench = $('section.box.bench.away[data-view="0"]', html);
+    teamTablePitch = $('section.box.away[data-view="0"]', html);
   } else if (position === 1) {
     teamTable = $('section.box.home[data-view="1"]', html);
     teamTableBench = $('section.box.bench.away[data-view="1"]', html);
+    teamTablePitch = $('section.box.away[data-view="1"]', html);
   }
 
   const teamName = $("span.team-city-full", html)[position].children[0].data;
 
   const spans = $("span.name > a", teamTable);
   const spansBench = $("td > a", teamTableBench);
+  const spansPitch = $("td > a", teamTablePitch);
 
   const playersActive = parseNames(spans, false);
   const playersBench = parseNames(spansBench, true);
+  const playersPitch = parseNames(spansPitch, true);
 
-  const team = new Team(teamName, playersActive.concat(playersBench), position);
+  const team = new Team(teamName, playersActive.concat(playersBench, playersPitch), position);
 
   return team;
 }

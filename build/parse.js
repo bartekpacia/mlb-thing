@@ -10,20 +10,25 @@ var types_1 = require("./types");
 function getTeam(html, position) {
     var teamTable;
     var teamTableBench;
+    var teamTablePitch;
     if (position === 0) {
         teamTable = $('section.box.away[data-view="0"]', html);
         teamTableBench = $('section.box.bench.away[data-view="0"]', html);
+        teamTablePitch = $('section.box.away[data-view="0"]', html);
     }
     else if (position === 1) {
         teamTable = $('section.box.home[data-view="1"]', html);
         teamTableBench = $('section.box.bench.away[data-view="1"]', html);
+        teamTablePitch = $('section.box.away[data-view="1"]', html);
     }
     var teamName = $("span.team-city-full", html)[position].children[0].data;
     var spans = $("span.name > a", teamTable);
     var spansBench = $("td > a", teamTableBench);
+    var spansPitch = $("td > a", teamTablePitch);
     var playersActive = parseNames(spans, false);
     var playersBench = parseNames(spansBench, true);
-    var team = new types_1.Team(teamName, playersActive.concat(playersBench), position);
+    var playersPitch = parseNames(spansPitch, true);
+    var team = new types_1.Team(teamName, playersActive.concat(playersBench, playersPitch), position);
     return team;
 }
 exports.getTeam = getTeam;
