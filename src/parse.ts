@@ -28,16 +28,19 @@ function getTeam(html: string, position: number): Team {
 
   const playersActive = parseNames(spans, false);
   const playersBench = parseNames(spansBench, true);
-  const playersPitch = parseNames(spansPitch, true);
+  const playersPitch = parseNames(spansPitch, false);
 
   let playersAll = playersActive.concat(playersBench, playersPitch);
 
-  playersAll = playersAll.filter(
-    (player, index, self) =>
-      self.findIndex(
-        p => p.name === player.name && p.href === player.href && p.isBench === player.isBench
-      ) === index
-  );
+  // Remove players who played *and* sat on bench
+  playersAll = playersAll.filter((player, index) => {
+    return (
+      index ===
+      playersAll.findIndex(p => {
+        return p.name === player.name;
+      })
+    );
+  });
 
   const team = new Team(teamName, playersAll, position);
 

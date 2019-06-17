@@ -7,7 +7,7 @@ import * as parse from "./parse";
 import { Player } from "./types";
 
 console.log(`${chalk.green("MLB Thing")} by Bartek Pacia | Command-line baseball data scraper`);
-console.log(`Player names colored on ${chalk.yellow("yellow")} were bullup/bench`);
+console.log(`Player names colored on ${chalk.yellow("yellow")} were only on bench`);
 
 let url = readline.question("Enter URL of the match: ");
 if (url.length === 0)

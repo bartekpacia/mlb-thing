@@ -27,10 +27,14 @@ function getTeam(html, position) {
     var spansPitch = $("td > a", teamTablePitch);
     var playersActive = parseNames(spans, false);
     var playersBench = parseNames(spansBench, true);
-    var playersPitch = parseNames(spansPitch, true);
+    var playersPitch = parseNames(spansPitch, false);
     var playersAll = playersActive.concat(playersBench, playersPitch);
-    playersAll.filter(function (player, index) {
-        return playersAll.indexOf(player) == index;
+    // Remove players who played *and* sat on bench
+    playersAll = playersAll.filter(function (player, index) {
+        return (index ===
+            playersAll.findIndex(function (p) {
+                return p.name === player.name;
+            }));
     });
     var team = new types_1.Team(teamName, playersAll, position);
     return team;
