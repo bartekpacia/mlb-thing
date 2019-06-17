@@ -30,7 +30,16 @@ function getTeam(html: string, position: number): Team {
   const playersBench = parseNames(spansBench, true);
   const playersPitch = parseNames(spansPitch, true);
 
-  const team = new Team(teamName, playersActive.concat(playersBench, playersPitch), position);
+  let playersAll = playersActive.concat(playersBench, playersPitch);
+
+  playersAll = playersAll.filter(
+    (player, index, self) =>
+      self.findIndex(
+        p => p.name === player.name && p.href === player.href && p.isBench === player.isBench
+      ) === index
+  );
+
+  const team = new Team(teamName, playersAll, position);
 
   return team;
 }

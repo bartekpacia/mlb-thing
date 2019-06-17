@@ -28,7 +28,11 @@ function getTeam(html, position) {
     var playersActive = parseNames(spans, false);
     var playersBench = parseNames(spansBench, true);
     var playersPitch = parseNames(spansPitch, true);
-    var team = new types_1.Team(teamName, playersActive.concat(playersBench, playersPitch), position);
+    var playersAll = playersActive.concat(playersBench, playersPitch);
+    playersAll.filter(function (player, index) {
+        return playersAll.indexOf(player) == index;
+    });
+    var team = new types_1.Team(teamName, playersAll, position);
     return team;
 }
 exports.getTeam = getTeam;
