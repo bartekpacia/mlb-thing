@@ -5,6 +5,7 @@ var figlet = require("figlet");
 var chalk_1 = require("chalk");
 var download = require("./download");
 var parse = require("./parse");
+var exporter = require("./exporter");
 console.log(chalk_1.default.green("MLB Thing") + " by Bartek Pacia | Command-line baseball data scraper");
 console.log("Player names colored on " + chalk_1.default.yellow("yellow") + " were only on bench");
 var url = readline.question("Enter URL of the match: ");
@@ -29,6 +30,8 @@ download.getHtml(url).then(function (html) {
     rightTeam.players.forEach(function (player, index) {
         logPlayer(player, index);
     });
+    exporter.exportCsv(leftTeam.players);
+    console.log("Experimental feature - CSV file has been generated.");
     console.log("\n\n\nFinished. Press Ctrl + C to exit.");
 });
 function logPlayer(player, index) {

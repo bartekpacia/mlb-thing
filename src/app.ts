@@ -4,6 +4,7 @@ import chalk from "chalk";
 
 import * as download from "./download";
 import * as parse from "./parse";
+import * as exporter from "./exporter";
 import { Player } from "./types";
 
 console.log(`${chalk.green("MLB Thing")} by Bartek Pacia | Command-line baseball data scraper`);
@@ -38,6 +39,8 @@ download.getHtml(url).then(html => {
     logPlayer(player, index);
   });
 
+  exporter.exportCsv(leftTeam.players);
+  console.log("Experimental feature - CSV file has been generated.");
   console.log("\n\n\nFinished. Press Ctrl + C to exit.");
 });
 
