@@ -13,13 +13,26 @@ const options: Options = {
 
 const csvExporter = new ExportToCsv(options);
 
-function exportCsv(players: Player[]) {
-  players.forEach(player => {
+function exportCsv(team1: Team, team2: Team) {
+  team1.players.forEach(player => {
     delete player.href;
     delete player.isBench;
   });
 
-  const csv = csvExporter.generateCsv(JSON.stringify(players), true);
+  team2.players.forEach(player => {
+    delete player.href;
+    delete player.isBench;
+  });
+
+  console.log(team1.players);
+  console.log(team2.players);
+
+  const twoTeams = {
+    "1": "team1.players",
+    "2": "team2.players"
+  };
+
+  const csv = csvExporter.generateCsv(JSON.stringify(twoTeams), true);
   fs.writeFileSync("exported.csv", csv);
 }
 

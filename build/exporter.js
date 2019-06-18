@@ -11,12 +11,22 @@ var options = {
     // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
 };
 var csvExporter = new export_to_csv_1.ExportToCsv(options);
-function exportCsv(players) {
-    players.forEach(function (player) {
+function exportCsv(team1, team2) {
+    team1.players.forEach(function (player) {
         delete player.href;
         delete player.isBench;
     });
-    var csv = csvExporter.generateCsv(JSON.stringify(players), true);
+    team2.players.forEach(function (player) {
+        delete player.href;
+        delete player.isBench;
+    });
+    console.log(team1.players);
+    console.log(team2.players);
+    var twoTeams = {
+        "1": "team1.players",
+        "2": "team2.players"
+    };
+    var csv = csvExporter.generateCsv(JSON.stringify(twoTeams), true);
     fs.writeFileSync("exported.csv", csv);
 }
 exports.exportCsv = exportCsv;

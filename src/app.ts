@@ -2,8 +2,8 @@ import * as readline from "readline-sync";
 import * as figlet from "figlet";
 import chalk from "chalk";
 
-import * as download from "./download";
-import * as parse from "./parse";
+import * as download from "./downloader";
+import * as parse from "./parser";
 import * as exporter from "./exporter";
 import { Player } from "./types";
 
@@ -39,7 +39,7 @@ download.getHtml(url).then(html => {
     logPlayer(player, index);
   });
 
-  exporter.exportCsv(leftTeam.players);
+  exporter.exportCsv(leftTeam, rightTeam);
   console.log("\n\n");
   console.log("Experimental feature - CSV file has been generated.");
   console.log("\n\n\nFinished. Press Ctrl + C to exit.");
