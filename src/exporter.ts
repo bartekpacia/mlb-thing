@@ -17,7 +17,6 @@ const options: Options = {
 const csvExporter = new ExportToCsv(options);
 
 function exportCsv(players: Player[]) {
-  console.log(JSON.stringify(players));
   const csv = csvExporter.generateCsv(JSON.stringify(players), true);
   fs.writeFileSync("exported.csv", csv);
 }

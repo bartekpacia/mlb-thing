@@ -40,6 +40,7 @@ download.getHtml(url).then(html => {
   });
 
   exporter.exportCsv(leftTeam.players);
+  console.log("\n\n");
   console.log("Experimental feature - CSV file has been generated.");
   console.log("\n\n\nFinished. Press Ctrl + C to exit.");
 });

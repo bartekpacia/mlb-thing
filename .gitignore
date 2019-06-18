@@ -3,3 +3,4 @@
 app-linux
 app-macos
 app-win.exe
+*.csv

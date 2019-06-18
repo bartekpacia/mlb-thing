@@ -7,9 +7,9 @@ import { Player, Team } from "./types";
  * @param {} position Left (0) or right (1)
  */
 function getTeam(html: string, position: number): Team {
-  let teamTable;
-  let teamTableBench;
-  let teamTablePitch;
+  let teamTable: Cheerio;
+  let teamTableBench: Cheerio;
+  let teamTablePitch: Cheerio;
   if (position === 0) {
     teamTable = $('section.box.away[data-view="0"]', html);
     teamTableBench = $('section.box.bench.away[data-view="0"]', html);
@@ -21,6 +21,8 @@ function getTeam(html: string, position: number): Team {
   }
 
   const teamName = $("span.team-city-full", html)[position].children[0].data;
+  const date = $("div.date").text();
+  console.log(date);
 
   const spans = $("span.name > a", teamTable);
   const spansBench = $("td > a", teamTableBench);
@@ -42,6 +44,8 @@ function getTeam(html: string, position: number): Team {
     );
   });
 
+  playersAll.sort(compareNames);
+
   const team = new Team(teamName, playersAll, position);
 
   return team;
@@ -58,7 +62,6 @@ function parseNames(spans: Cheerio, isBench: boolean): Player[] {
     players.push(player);
   }
 
-  players.sort(compareNames);
   return players;
 }
 

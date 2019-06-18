@@ -22,6 +22,8 @@ function getTeam(html, position) {
         teamTablePitch = $('section.box.away[data-view="1"]', html);
     }
     var teamName = $("span.team-city-full", html)[position].children[0].data;
+    var date = $("div.date").text();
+    console.log(date);
     var spans = $("span.name > a", teamTable);
     var spansBench = $("td > a", teamTableBench);
     var spansPitch = $("td > a", teamTablePitch);
@@ -36,6 +38,7 @@ function getTeam(html, position) {
                 return p.name === player.name;
             }));
     });
+    playersAll.sort(compareNames);
     var team = new types_1.Team(teamName, playersAll, position);
     return team;
 }
@@ -49,7 +52,6 @@ function parseNames(spans, isBench) {
         var player = new types_1.Player(name_1, href, isBench);
         players.push(player);
     }
-    players.sort(compareNames);
     return players;
 }
 function compareNames(a, b) {

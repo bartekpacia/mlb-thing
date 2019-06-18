@@ -15,7 +15,6 @@ var options = {
 };
 var csvExporter = new export_to_csv_1.ExportToCsv(options);
 function exportCsv(players) {
-    console.log(JSON.stringify(players));
     var csv = csvExporter.generateCsv(JSON.stringify(players), true);
     fs.writeFileSync("exported.csv", csv);
 }
