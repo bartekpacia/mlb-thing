@@ -7,16 +7,18 @@ const options: Options = {
   quoteStrings: '"',
   decimalSeparator: ".",
   showLabels: true,
-  showTitle: true,
-  title: "exported match",
-  useTextFile: false,
-  useKeysAsHeaders: true
+  useTextFile: false
   // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
 };
 
 const csvExporter = new ExportToCsv(options);
 
 function exportCsv(players: Player[]) {
+  players.forEach(player => {
+    delete player.href;
+    delete player.isBench;
+  });
+
   const csv = csvExporter.generateCsv(JSON.stringify(players), true);
   fs.writeFileSync("exported.csv", csv);
 }
