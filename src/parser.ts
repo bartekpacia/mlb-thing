@@ -1,12 +1,20 @@
 import * as $ from "cheerio";
-import { Player, Team } from "./types";
+import { Player, Team, Match } from "./types";
 
 /**
  *
  * @param {} html HTML code of the website (whole)
  * @param {} position Left (0) or right (1)
  */
-function getTeam(html: string, position: number): Team {
+function parseMatch(html: string): Match {
+  const team1 = parseTeam(html, 0);
+  const team2 = parseTeam(html, 1);
+  const date = $("div.date", html).text();
+
+  return new Match(date, team1, team2);
+}
+
+function parseTeam(html: string, position: number) {
   let teamTable: Cheerio;
   let teamTableBench: Cheerio;
   let teamTablePitch: Cheerio;
@@ -21,8 +29,6 @@ function getTeam(html: string, position: number): Team {
   }
 
   const teamName = $("span.team-city-full", html)[position].children[0].data;
-  const date = $("div.date", html).text();
-  console.log(date);
 
   const spans = $("span.name > a", teamTable);
   const spansBench = $("td > a", teamTableBench);
@@ -76,4 +82,4 @@ function compareNames(a: Player, b: Player) {
   return comparison;
 }
 
-export { getTeam };
+export { parseMatch };

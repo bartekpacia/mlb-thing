@@ -25,7 +25,7 @@ function exportTeamPlayersToCsv(team: Team) {
   });
 
   const csv1 = csvExporter.generateCsv(JSON.stringify(team.players), true);
-  fs.writeFileSync(`${team.name}_players.csv`, csv1);
+  fs.writeFileSync(`outputs/${team.name}_players.csv`, csv1);
 }
 
 export { exportCsv };

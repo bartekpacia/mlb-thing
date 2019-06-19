@@ -7,4 +7,8 @@ class Team {
   constructor(public name: string, public players: Player[], public position: number) {}
 }
 
-export { Player, Team };
+class Match {
+  constructor(public date: String, public team1: Team, public team2: Team) {}
+}
+
+export { Match, Team, Player };

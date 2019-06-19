@@ -16,8 +16,10 @@ if (url.length === 0)
     "https://www.mlb.com/gameday/d-backs-vs-dodgers/2019/03/29/565800#game_state=final,lock_state=final,game_tab=box,game=565800";
 
 download.getHtml(url).then(html => {
-  const leftTeam = parse.getTeam(html, 0);
-  const rightTeam = parse.getTeam(html, 1);
+  const match = parse.parseMatch(html);
+
+  const leftTeam = match.team1;
+  const rightTeam = match.team2;
 
   const leftTeamName = leftTeam.name;
   const rightTeamName = rightTeam.name;
@@ -41,7 +43,7 @@ download.getHtml(url).then(html => {
 
   exporter.exportCsv(leftTeam, rightTeam);
   console.log("\n\n");
-  console.log("Experimental feature - CSV file has been generated.");
+  console.log("Experimental feature - CSV files have been generated.");
   console.log("\n\n\nFinished. Press Ctrl + C to exit.");
 });
 
