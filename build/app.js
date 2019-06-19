@@ -21,12 +21,12 @@ download.getHtml(url).then(function (html) {
     console.log(chalk_1.default.white(figlet.textSync(" \n\nVS\n\n ")));
     console.log(chalk_1.default.red(figlet.textSync(rightTeamName)));
     console.log("\n\n");
-    console.log(chalk_1.default.blue(leftTeamName + " players"));
+    console.log(chalk_1.default.blue(leftTeamName + " players (" + leftTeam.players.length + " in total)"));
     leftTeam.players.forEach(function (player, index) {
         logPlayer(player, index);
     });
     console.log("\n\n");
-    console.log(chalk_1.default.red(rightTeamName + " players"));
+    console.log(chalk_1.default.red(rightTeamName + " players (" + rightTeam.players.length + " in total)"));
     rightTeam.players.forEach(function (player, index) {
         logPlayer(player, index);
     });

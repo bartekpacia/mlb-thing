@@ -27,14 +27,14 @@ download.getHtml(url).then(html => {
   console.log(chalk.red(figlet.textSync(rightTeamName)));
   console.log("\n\n");
 
-  console.log(chalk.blue(`${leftTeamName} players`));
+  console.log(chalk.blue(`${leftTeamName} players (${leftTeam.players.length} in total)`));
   leftTeam.players.forEach((player, index) => {
     logPlayer(player, index);
   });
 
   console.log("\n\n");
 
-  console.log(chalk.red(`${rightTeamName} players`));
+  console.log(chalk.red(`${rightTeamName} players (${rightTeam.players.length} in total)`));
   rightTeam.players.forEach((player, index) => {
     logPlayer(player, index);
   });
