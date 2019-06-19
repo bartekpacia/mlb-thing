@@ -21,7 +21,7 @@ function getTeam(html: string, position: number): Team {
   }
 
   const teamName = $("span.team-city-full", html)[position].children[0].data;
-  const date = $("div.date").text();
+  const date = $("div.date", html).text();
   console.log(date);
 
   const spans = $("span.name > a", teamTable);
