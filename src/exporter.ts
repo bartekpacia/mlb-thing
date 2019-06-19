@@ -6,7 +6,7 @@ const outputFolder = "./outputs";
 
 const options: Options = {
   fieldSeparator: ",",
-  quoteStrings: '"',
+  quoteStrings: "",
   decimalSeparator: "."
 };
 
