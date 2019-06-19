@@ -1,7 +1,9 @@
 import * as puppeteer from "puppeteer";
 
 async function getHtml(url: string) {
-  const browser = await puppeteer.launch();
+  const executablePath = puppeteer.executablePath;
+
+  const browser = await puppeteer.launch({ executablePath });
   const page = await browser.newPage();
   await page.goto(url);
   await page.waitFor(1500);

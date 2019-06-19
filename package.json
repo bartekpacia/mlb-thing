@@ -28,7 +28,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node build/app.js"
+    "start": "tsc && node build/app.js",
+    "pkg": "rm -rf ./pkg && pkg -t node8-macos-x64 --out-path pkg .",
+    "postpkg": "mkdir -p ./pkg/node_modules/puppeteer && cp -R ./node_modules/puppeteer/.local-chromium ./pkg/node_modules/puppeteer"
+  },
+  "bin": {
+    "app": "build/app.js"
   },
   "author": "bartekpacia",
   "license": "ISC"
