@@ -28,6 +28,7 @@ download.getHtml(url).then(html => {
   console.log(chalk.white(figlet.textSync(` \n\nVS\n\n `)));
   console.log(chalk.red(figlet.textSync(rightTeamName)));
   console.log("\n\n");
+  console.log(`Match took place on ${match.date}\n\n`);
 
   console.log(chalk.blue(`${leftTeamName} players (${leftTeam.players.length} in total)`));
   leftTeam.players.forEach((player, index) => {
