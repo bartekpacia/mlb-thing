@@ -1,15 +1,23 @@
 import * as $ from "cheerio";
-import { Player, Team } from "./types";
+import { Player, Team, Match } from "./types";
 
 /**
  *
  * @param {} html HTML code of the website (whole)
  * @param {} position Left (0) or right (1)
  */
-function getTeam(html: string, position: number): Team {
-  let teamTable;
-  let teamTableBench;
-  let teamTablePitch;
+function parseMatch(html: string): Match {
+  const team1 = parseTeam(html, 0);
+  const team2 = parseTeam(html, 1);
+  const date = $("div.date", html).text();
+
+  return new Match(date, team1, team2);
+}
+
+function parseTeam(html: string, position: number) {
+  let teamTable: Cheerio;
+  let teamTableBench: Cheerio;
+  let teamTablePitch: Cheerio;
   if (position === 0) {
     teamTable = $('section.box.away[data-view="0"]', html);
     teamTableBench = $('section.box.bench.away[data-view="0"]', html);
@@ -42,6 +50,8 @@ function getTeam(html: string, position: number): Team {
     );
   });
 
+  playersAll.sort(compareNames);
+
   const team = new Team(teamName, playersAll, position);
 
   return team;
@@ -58,7 +68,6 @@ function parseNames(spans: Cheerio, isBench: boolean): Player[] {
     players.push(player);
   }
 
-  players.sort(compareNames);
   return players;
 }
 
@@ -73,4 +82,4 @@ function compareNames(a: Player, b: Player) {
   return comparison;
 }
 
-export { getTeam };
+export { parseMatch };
