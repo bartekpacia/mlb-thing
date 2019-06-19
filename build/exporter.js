@@ -22,11 +22,15 @@ function exportCsv(team1, team2) {
     });
     console.log(team1.players);
     console.log(team2.players);
-    var twoTeams = {
-        "1": "team1.players",
-        "2": "team2.players"
-    };
-    var csv = csvExporter.generateCsv(JSON.stringify(twoTeams), true);
-    fs.writeFileSync("exported.csv", csv);
+    // const twoTeams = {
+    //   "1": team1.players,
+    //   "2": team2.players
+    // };
+    // const teamsStringified = JSON.stringify(twoTeams);
+    // console.log(teamsStringified);
+    var csv1 = csvExporter.generateCsv(JSON.stringify(team1.players), true);
+    fs.writeFileSync(team1.name + "_players.csv", csv1);
+    var csv2 = csvExporter.generateCsv(JSON.stringify(team2.players), true);
+    fs.writeFileSync(team2.name + "_players.csv", csv2);
 }
 exports.exportCsv = exportCsv;
