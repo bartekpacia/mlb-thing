@@ -2,6 +2,8 @@ import { ExportToCsv, Options } from "export-to-csv";
 import { Team, Player } from "./types";
 import * as fs from "fs";
 
+const outputFolder = "./outputs";
+
 const options: Options = {
   fieldSeparator: ",",
   quoteStrings: '"',
@@ -25,6 +27,10 @@ function exportTeamPlayersToCsv(team: Team) {
   });
 
   const csv1 = csvExporter.generateCsv(JSON.stringify(team.players), true);
+
+  if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder);
+  }
   fs.writeFileSync(`outputs/${team.name}_players.csv`, csv1);
 }
 
