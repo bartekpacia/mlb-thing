@@ -1,7 +1,10 @@
 .DS_STORE
 .vscode
+.local-chromium
 /build
+/pkg
 /node_modules
+/outputs
 app-linux
 app-macos
 app-win.exe
