@@ -24,8 +24,8 @@ function parseTeam(html: string, position: number) {
     teamTablePitch = $('section.box.away[data-view="0"]', html);
   } else if (position === 1) {
     teamTable = $('section.box.home[data-view="1"]', html);
-    teamTableBench = $('section.box.bench.away[data-view="1"]', html);
-    teamTablePitch = $('section.box.away[data-view="1"]', html);
+    teamTableBench = $('section.box.bench.home[data-view="1"]', html);
+    teamTablePitch = $('section.box.home[data-view="1"]', html);
   }
 
   const teamName = $("span.team-city-full", html)[position].children[0].data;
