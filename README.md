@@ -10,3 +10,5 @@ Just a web scraper for https://www.mlb.com/ I've made for my friend to make his 
 - Run `npm install`
 - Run `npm run start`
 - Follow the instructions
+
+Video tutorial [here](https://youtu.be/2vuwxQFiBzY)
